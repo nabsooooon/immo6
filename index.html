@@ -19,12 +19,6 @@
         background: #1a1a2e;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         color: #f5f5f5;
-        overflow: hidden;
-      }
-      .crane-container {
-        width: 340px;
-        height: 380px;
-        margin-bottom: 2rem;
       }
       h1 {
         font-size: 2rem;
@@ -36,130 +30,9 @@
         font-size: 1.1rem;
         color: #ccc;
       }
-
-      /* Crane animations */
-      @keyframes swingArm {
-        0%, 100% { transform: rotate(-8deg); }
-        50% { transform: rotate(8deg); }
-      }
-      @keyframes swingCable {
-        0%, 100% { transform: scaleY(1); }
-        30% { transform: scaleY(1.08); }
-        70% { transform: scaleY(0.94); }
-      }
-      @keyframes swingHook {
-        0%, 100% { transform: translateX(-12px); }
-        50% { transform: translateX(12px); }
-      }
-      @keyframes pulseLight {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.3; }
-      }
-      .crane-arm {
-        transform-origin: 170px 200px;
-        animation: swingArm 6s ease-in-out infinite;
-      }
-      .crane-cable {
-        transform-origin: top;
-        animation: swingCable 6s ease-in-out infinite;
-      }
-      .crane-hook-group {
-        animation: swingHook 6s ease-in-out infinite;
-      }
-      .crane-light {
-        animation: pulseLight 1.2s ease-in-out infinite;
-      }
     </style>
   </head>
   <body>
-    <div class="crane-container">
-      <svg viewBox="0 0 340 380" xmlns="http://www.w3.org/2000/svg">
-
-        <!-- Base / Plateforme -->
-        <rect x="120" y="330" width="100" height="20" rx="4" fill="#1c1c1c"/>
-        <rect x="100" y="345" width="140" height="14" rx="3" fill="#2a2a2a"/>
-        <!-- Chenilles -->
-        <rect x="90" y="355" width="60" height="18" rx="9" fill="#1c1c1c" stroke="#ffd60a" stroke-width="1.5"/>
-        <rect x="190" y="355" width="60" height="18" rx="9" fill="#1c1c1c" stroke="#ffd60a" stroke-width="1.5"/>
-        <circle cx="105" cy="364" r="5" fill="#333"/>
-        <circle cx="135" cy="364" r="5" fill="#333"/>
-        <circle cx="205" cy="364" r="5" fill="#333"/>
-        <circle cx="235" cy="364" r="5" fill="#333"/>
-
-        <!-- Cabine -->
-        <rect x="140" y="290" width="60" height="44" rx="5" fill="#ffd60a"/>
-        <rect x="148" y="296" width="20" height="16" rx="2" fill="#a3d8f4" opacity="0.7"/>
-        <rect x="172" y="296" width="20" height="16" rx="2" fill="#a3d8f4" opacity="0.7"/>
-        <rect x="140" y="286" width="60" height="8" rx="3" fill="#1c1c1c"/>
-
-        <!-- Tour verticale (treillis) -->
-        <rect x="162" y="100" width="16" height="190" fill="#ffd60a"/>
-        <rect x="160" y="100" width="20" height="190" fill="none" stroke="#1c1c1c" stroke-width="2"/>
-        <!-- Barres diagonales du treillis -->
-        <line x1="162" y1="110" x2="178" y2="130" stroke="#1c1c1c" stroke-width="1.5"/>
-        <line x1="178" y1="130" x2="162" y2="150" stroke="#1c1c1c" stroke-width="1.5"/>
-        <line x1="162" y1="150" x2="178" y2="170" stroke="#1c1c1c" stroke-width="1.5"/>
-        <line x1="178" y1="170" x2="162" y2="190" stroke="#1c1c1c" stroke-width="1.5"/>
-        <line x1="162" y1="190" x2="178" y2="210" stroke="#1c1c1c" stroke-width="1.5"/>
-        <line x1="178" y1="210" x2="162" y2="230" stroke="#1c1c1c" stroke-width="1.5"/>
-        <line x1="162" y1="230" x2="178" y2="250" stroke="#1c1c1c" stroke-width="1.5"/>
-        <line x1="178" y1="250" x2="162" y2="270" stroke="#1c1c1c" stroke-width="1.5"/>
-        <line x1="162" y1="270" x2="178" y2="290" stroke="#1c1c1c" stroke-width="1.5"/>
-
-        <!-- Groupe bras pivotant (animé) -->
-        <g class="crane-arm">
-          <!-- Bras horizontal (flèche) -->
-          <rect x="50" y="94" width="230" height="12" rx="3" fill="#ffd60a"/>
-          <rect x="50" y="94" width="230" height="12" rx="3" fill="none" stroke="#1c1c1c" stroke-width="2"/>
-          <!-- Treillis du bras -->
-          <line x1="60" y1="96" x2="80" y2="104" stroke="#1c1c1c" stroke-width="1"/>
-          <line x1="80" y1="96" x2="100" y2="104" stroke="#1c1c1c" stroke-width="1"/>
-          <line x1="100" y1="96" x2="120" y2="104" stroke="#1c1c1c" stroke-width="1"/>
-          <line x1="120" y1="96" x2="140" y2="104" stroke="#1c1c1c" stroke-width="1"/>
-          <line x1="180" y1="96" x2="200" y2="104" stroke="#1c1c1c" stroke-width="1"/>
-          <line x1="200" y1="96" x2="220" y2="104" stroke="#1c1c1c" stroke-width="1"/>
-          <line x1="220" y1="96" x2="240" y2="104" stroke="#1c1c1c" stroke-width="1"/>
-          <line x1="240" y1="96" x2="260" y2="104" stroke="#1c1c1c" stroke-width="1"/>
-
-          <!-- Contrepoids arrière -->
-          <rect x="240" y="72" width="36" height="22" rx="3" fill="#1c1c1c"/>
-          <rect x="244" y="76" width="28" height="14" rx="2" fill="#333"/>
-
-          <!-- Hauban (câbles de soutien) -->
-          <line x1="170" y1="56" x2="60" y2="94" stroke="#1c1c1c" stroke-width="2"/>
-          <line x1="170" y1="56" x2="260" y2="76" stroke="#1c1c1c" stroke-width="2"/>
-          <!-- Sommet du mât -->
-          <polygon points="164,56 176,56 170,40" fill="#ffd60a" stroke="#1c1c1c" stroke-width="1.5"/>
-
-          <!-- Lumière clignotante -->
-          <circle class="crane-light" cx="170" cy="40" r="5" fill="#ff3333"/>
-
-          <!-- Câble vertical + crochet -->
-          <g class="crane-cable">
-            <line x1="80" y1="106" x2="80" y2="220" stroke="#1c1c1c" stroke-width="2"/>
-          </g>
-          <g class="crane-hook-group">
-            <!-- Poulie -->
-            <circle cx="80" cy="224" r="6" fill="#1c1c1c" stroke="#ffd60a" stroke-width="2"/>
-            <!-- Crochet -->
-            <path d="M80,230 L80,250 Q80,264 70,264 Q58,264 58,252" fill="none" stroke="#ffd60a" stroke-width="3" stroke-linecap="round"/>
-            <circle cx="58" cy="250" r="3" fill="#ffd60a"/>
-          </g>
-        </g>
-
-        <!-- Bandes de sécurité sur la base -->
-        <g opacity="0.6">
-          <line x1="105" y1="350" x2="110" y2="345" stroke="#ffd60a" stroke-width="2"/>
-          <line x1="115" y1="350" x2="120" y2="345" stroke="#ffd60a" stroke-width="2"/>
-          <line x1="125" y1="350" x2="130" y2="345" stroke="#ffd60a" stroke-width="2"/>
-          <line x1="135" y1="350" x2="140" y2="345" stroke="#ffd60a" stroke-width="2"/>
-          <line x1="200" y1="350" x2="205" y2="345" stroke="#ffd60a" stroke-width="2"/>
-          <line x1="210" y1="350" x2="215" y2="345" stroke="#ffd60a" stroke-width="2"/>
-          <line x1="220" y1="350" x2="225" y2="345" stroke="#ffd60a" stroke-width="2"/>
-          <line x1="230" y1="350" x2="235" y2="345" stroke="#ffd60a" stroke-width="2"/>
-        </g>
-      </svg>
-    </div>
     <h1>Bienvenue sur immo6.com</h1>
     <p>Site en construction.</p>
   </body>
