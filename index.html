@@ -32,14 +32,44 @@
       }
       .construction {
         text-decoration: underline;
+        color: #fff;
       }
-      .jaune {
+      #countdown {
+        margin-top: 1.5rem;
+        font-size: 1.5rem;
+        font-variant-numeric: tabular-nums;
         color: #ffd60a;
+        letter-spacing: 2px;
+      }
+      #countdown span {
+        color: #ccc;
+        font-size: 0.9rem;
+        font-weight: normal;
+        letter-spacing: 1px;
       }
     </style>
   </head>
   <body>
     <h1>Bienvenue sur immo6.com</h1>
-    <p class="construction">Site en <strong class="jaune">construction</strong>.</p>
+    <p class="construction">Site en <strong>construction</strong>.</p>
+    <div id="countdown"><span>Ouverture dans :</span><br> <span id="timer">459 h 45 min 00 s</span></div>
+    <script>
+      (function () {
+        var totalSeconds = 459 * 3600 + 45 * 60;
+        function format(t) {
+          var h = Math.floor(t / 3600);
+          var m = Math.floor((t % 3600) / 60);
+          var s = t % 60;
+          return h + ' h ' + String(m).padStart(2, '0') + ' min ' + String(s).padStart(2, '0') + ' s';
+        }
+        var el = document.getElementById('timer');
+        el.textContent = format(totalSeconds);
+        setInterval(function () {
+          if (totalSeconds <= 0) return;
+          totalSeconds--;
+          el.textContent = format(totalSeconds);
+        }, 1000);
+      })();
+    </script>
   </body>
 </html>
