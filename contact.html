@@ -112,7 +112,8 @@
   <body>
     <a class="back" href="index.html">← Retour</a>
     <h1>Nous contacter</h1>
-    <form id="contact-form">
+    <!-- Remplace l'URL ci-dessous par l'URL de ton déploiement Google Apps Script -->
+    <form id="contact-form" action="REMPLACER_PAR_URL_DU_SCRIPT" method="POST">
       <div>
         <label for="name">Nom *</label>
         <input type="text" id="name" name="from_name" required placeholder="Votre nom">
@@ -133,59 +134,21 @@
     </form>
     <div id="form-message" class="message" role="alert"></div>
 
-    <!-- EmailJS SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
       (function () {
-        // À configurer après inscription sur https://www.emailjs.com/
-        var PUBLIC_KEY = 'VOTRE_CLE_PUBLIQUE';
-        var SERVICE_ID = 'VOTRE_SERVICE_ID';
-        var TEMPLATE_ID = 'VOTRE_TEMPLATE_ID';
-
-        emailjs.init(PUBLIC_KEY);
-
-        var form = document.getElementById('contact-form');
-        var btn = document.getElementById('submit-btn');
+        var params = new URLSearchParams(window.location.search);
         var msgEl = document.getElementById('form-message');
-
-        function showMessage(text, isError) {
-          msgEl.textContent = text;
-          msgEl.className = 'message ' + (isError ? 'error' : 'success');
+        if (params.get('sent') === '1') {
+          msgEl.textContent = 'Message envoyé. Nous vous recontacterons rapidement.';
+          msgEl.className = 'message success';
           msgEl.style.display = 'block';
+          history.replaceState({}, '', 'contact.html');
+        } else if (params.get('error') === '1') {
+          msgEl.textContent = 'Erreur d\'envoi. Réessayez ou écrivez à serge@immo6.com.';
+          msgEl.className = 'message error';
+          msgEl.style.display = 'block';
+          history.replaceState({}, '', 'contact.html');
         }
-
-        function hideMessage() {
-          msgEl.style.display = 'none';
-        }
-
-        form.addEventListener('submit', function (e) {
-          e.preventDefault();
-          hideMessage();
-          btn.disabled = true;
-          btn.textContent = 'Envoi…';
-
-          var params = {
-            from_name: form.from_name.value.trim(),
-            from_email: form.from_email.value.trim(),
-            subject: form.subject.value.trim(),
-            message: form.message.value.trim(),
-            reply_to: form.from_email.value.trim()
-          };
-
-          emailjs.send(SERVICE_ID, TEMPLATE_ID, params)
-            .then(function () {
-              showMessage('Message envoyé. Nous vous recontacterons rapidement.', false);
-              form.reset();
-            })
-            .catch(function (err) {
-              showMessage('Erreur d\'envoi. Réessayez ou écrivez à contact@immo6.com.', true);
-              console.error('EmailJS:', err);
-            })
-            .finally(function () {
-              btn.disabled = false;
-              btn.textContent = 'Envoyer';
-            });
-        });
       })();
     </script>
   </body>
